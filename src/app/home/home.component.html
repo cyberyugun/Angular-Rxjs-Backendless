@@ -1,0 +1,52 @@
+<div class="card mt-4">
+  <h4 class="card-header">Home</h4>
+  <div class="card-body">
+    <p>Welcome,<strong>{{currentUser.role}} {{currentUser.firstName}} {{currentUser.lastName}}</strong>.</p>
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">
+            <a href="#" (click)="allContent()">ALL CONTENT</a>
+        </li>
+        <li class="list-group-item">
+            <a href="#" (click)="ContentBeginner()">BEGINNER</a>
+        </li>
+        <li class="list-group-item">
+            <a href="#" (click)="ContentIntermediet()">INTERMEDIET</a>
+        </li>
+        <li class="list-group-item">
+            <a href="#" (click)="ContentAdvance()">ADVANCE</a>
+        </li>
+    </ul>
+    <div class="grid" style="margin-top: 10px;" *ngIf="!this.cdetail">
+      <article class="card product-item" *ngFor="let product of contents">
+        <header class="card__header">
+          <h1 class="product__title">
+            {{product.title}}
+          </h1>
+        </header>
+        <div class="card__image">
+          <!-- <img src="{{product.imageUrl}}" alt="{{product.title}}"> -->
+        </div>
+        <div class="card__content">
+          <p class="product__description">
+            {{product.description}}
+          </p>
+        </div>
+        <div class="card__actions">
+          <a class="btn" (click)="Detail(product.id)">Details</a>
+        </div>
+      </article>
+    </div>
+    <div style="margin-top: 10px;" *ngIf="this.cdetail">
+        <div class="alert alert-dark" role="alert" *ngFor="let details of detail;">
+            <table style="width: 100%;">
+                <tr>
+                    <td align="left">{{details.title}}</td>
+                    <td align="right">
+                      {{this.c+this.math.floor(details.timer / 60) + ":" + this.d+this.math.floor(details.timer % 60)}}</td>
+                    <td align="right"><a [routerLink]="['/detail/', details.id]">View</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>

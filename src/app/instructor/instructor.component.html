@@ -1,0 +1,41 @@
+<div class="card mt-4">
+  <h4 class="card-header">Instructor</h4>
+  <div class="card-body">
+    <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+     <div *ngIf="contents && !this.cdetail" class="grid" style="margin-top: 10px;">
+       <article class="card product-item" *ngFor="let product of contents">
+         <header class="card__header">
+           <h1 class="product__title">
+             {{product.title}}
+           </h1>
+         </header>
+         <div class="card__image">
+           <!-- <img src="{{product.imageUrl}}" alt="{{product.title}}"> -->
+         </div>
+         <div class="card__content">
+           <p class="product__description">
+             {{product.description}}
+           </p>
+         </div>
+         <div class="card__actions">
+           <a class="btn" (click)="Detail(product.id)">Details</a>
+         </div>
+       </article>
+     </div>
+     <div style="margin-top: 10px;" *ngIf="this.cdetail">
+       <div class="alert alert-dark" role="alert" *ngFor="let details of detail;">
+         <table style="width: 100%;">
+           <tr>
+             <td align="left">{{details.title}}</td>
+             <td align="right">
+               {{this.c+this.math.floor(details.timer / 60) + ":" + this.d+this.math.floor(details.timer % 60)}}</td>
+             <td align="right"><a [routerLink]="['/detail/', details.id]">View</a></td>
+           </tr>
+         </table>
+       </div>
+     </div>
+  </div>
+</div>
+
+
+ 
