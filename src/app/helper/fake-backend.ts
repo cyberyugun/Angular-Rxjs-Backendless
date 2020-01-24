@@ -48,6 +48,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return getContents();
                 case url.match(/\/content\/\d+$/) && method === 'GET':
                     return getContentsById();
+                case url.match(/\/detail-content\/\d+$/) && method === 'GET':
+                    return getDetailContent();
                 case url.match(/\/detail\/\d+$/) && method === 'GET':
                     return getDetailById();
                 case url.endsWith('/content-beginner') && method === 'GET':
@@ -94,6 +96,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             const user = users.find(x => x.id === idFromUrl());
             return ok(user);
+        }
+
+        function getDetailContent(){
+            if (!isLoggedIn()) return unauthorized();
+            const details = detailContent.filter(a => a.id === idFromUrl())
+            return ok(details);
+            
         }
 
         function getContents() {

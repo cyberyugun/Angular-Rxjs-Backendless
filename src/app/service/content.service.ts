@@ -17,6 +17,10 @@ export class ContentService {
     return this.http.get<Detail[]>(`${environment.apiUrl}/detail/${id}`);
   }
 
+  getContentDetail(id: number) {
+    return this.http.get<Detail[]>(`${environment.apiUrl}/detail-content/${id}`);
+  }
+
   getAllContentbyId(id: number) {
     return this.http.get<Content[]>(`${environment.apiUrl}/content/${id}`);
   }
