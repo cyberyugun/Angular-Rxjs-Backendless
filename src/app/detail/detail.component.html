@@ -1,7 +1,7 @@
 <div class="card mt-4">
   <h4 class="card-header">Detail</h4>
   <div class="card-body">
-      <p>{{this.math.floor(this.hour/60/60)+' : '+this.math.floor((this.hour/60))+' : '+math.floor(this.second)}}
+      <p>{{this.math.floor(this.hour/60/60)+' : '+this.math.floor((this.hour/60) % 60)+' : '+math.floor(this.second % 60)}}
       </p>
       <h3 style="text-align: center;">{{this.detail['title']}}</h3>
       <p style="text-indent: 20px;">{{this.detail['description']}}</p>
